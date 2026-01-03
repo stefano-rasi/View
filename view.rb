@@ -18,9 +18,7 @@ module View
     end
 
     def element
-        if !@element
-            @element = instance_eval(&self.class.draw)
-        end
+        @element = instance_eval(&self.class.draw) if !@element
 
         @element
     end
