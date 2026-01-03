@@ -2,13 +2,19 @@ require 'opal'
 
 require_relative 'html'
 
-class View
-    def self.draw(&block)
-        if block_given?
-            @draw_block = block
-        else
-            @draw_block
+module View
+    module ClassMethods
+        def draw(&block)
+            if block_given?
+                @draw_block = block
+            else
+                @draw_block
+            end
         end
+    end
+
+    def self.included(base)
+        base.extend(ClassMethods)
     end
 
     def element
